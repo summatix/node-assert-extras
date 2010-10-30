@@ -2,6 +2,16 @@ var assert = require("assert");
 var extras = require("assert-extras");
 
 assert.doesNotThrow(function () {
+    extras.isTrue("test");
+    extras.isTrue("test", "Some message");
+    extras.isTrue(true);
+    extras.isTrue(true, "Some message");
+
+    extras.isFalse(null);
+    extras.isFalse(null, "Some message");
+    extras.isFalse(false);
+    extras.isFalse(false, "Some message");
+
     extras.isNull(null);
     extras.isNull(null, "Some message");
 
@@ -254,6 +264,22 @@ assert.throws(function () {
 
 assert.throws(function () {
     extras.isArray({ length: 1, "0": 42 });
+}, assert.AssertionError);
+
+assert.throws(function () {
+    extras.isTrue('');
+}, assert.AssertionError);
+
+assert.throws(function () {
+    extras.isTrue(false);
+}, assert.AssertionError);
+
+assert.throws(function () {
+    extras.isFalse(3);
+}, assert.AssertionError);
+
+assert.throws(function () {
+    extras.isFalse(true);
 }, assert.AssertionError);
 
 assert.throws(function () {
